@@ -69,8 +69,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public User Authenticate(User user) {
+		
 		User temp= userRepository.findByEmailReturnStream(user.getEmail());
 		if(temp.getPassword().equals(user.getPassword())) {
+			
 			return temp;
 		}
 		else {

@@ -37,7 +37,7 @@ public class User {
 	private String resetToken;
 	
 //	columnDefinition forces the role to be either MANAGER, CUSTOMER, or VENDOR
-	@Column(name="role", columnDefinition = "VARCHAR2(50) CHECK (role IN ('ADMIN', 'QC', 'USER'))")
+	@Column(name="role")//, columnDefinition = "VARCHAR2(50) CHECK (role IN ('ADMIN', 'QC', 'USER'))")
 	private String role;
 	
 	

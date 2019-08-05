@@ -18,6 +18,7 @@ public class UserController {
 	
 	@Autowired
 	public UserController(UserService userService) {
+		
 		this.userService=userService;
 	}
 	
@@ -30,7 +31,7 @@ public class UserController {
 	
 	@PostMapping(value="/login")
 	public User login(@RequestBody User user) {
-	
+		
 		return userService.Authenticate(user);
 	}
 
