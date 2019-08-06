@@ -27,7 +27,10 @@
 				<artifactId>javax.mail</artifactId>
 				<version>1.6.2</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<!-- OJDBC7 Local Maven Repository -->
 		<dependency>
 			<groupId>com.oracle</groupId>
