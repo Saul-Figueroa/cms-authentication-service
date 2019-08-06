@@ -80,6 +80,23 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+
+	@Override
+	public User getUserByEmail(User user) {
+		
+		User userEmail = userRepository.findByEmailReturnStream(user.getEmail());
+		return userEmail;
+	}
+
+
+	@Override
+	public User getUserByToken(String token) {
+		
+		User userToken = userRepository.findByTokenReturnStream(token);
+		
+		return userToken;
+	}
+
 	
 
 }
