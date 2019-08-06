@@ -32,7 +32,14 @@ public class UserController {
 	
 	@PostMapping(value="/login")
 	public User login(@RequestBody User user) {
+
+
+		
 		return userService.Authenticate(user);
+
+
+		
+
 	}
 
 }

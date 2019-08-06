@@ -20,8 +20,6 @@ import com.revature.entity.User;
 import com.revature.mail.JavaMailUtil;
 import com.revature.service.UserService;
 
-import ch.qos.logback.core.net.server.Client;
-
 @RestController
 @RequestMapping("/password")
 
