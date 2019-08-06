@@ -69,13 +69,32 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public User Authenticate(User user) {
+		
 		User temp= userRepository.findByEmailReturnStream(user.getEmail());
 		if(temp.getPassword().equals(user.getPassword())) {
+			
 			return temp;
 		}
 		else {
 			return null;
 		}
+	}
+
+
+	@Override
+	public User getUserByEmail(User user) {
+		
+		User userEmail = userRepository.findByEmailReturnStream(user.getEmail());
+		return userEmail;
+	}
+
+
+	@Override
+	public User getUserByToken(String token) {
+		
+		User userToken = userRepository.findByTokenReturnStream(token);
+		
+		return userToken;
 	}
 
 	

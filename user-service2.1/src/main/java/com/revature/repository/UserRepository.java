@@ -15,5 +15,8 @@ public interface UserRepository extends CrudRepository<User, Long>{
 	  */
 	 @Query("select u from User u where u.email = :email")
 	    User findByEmailReturnStream(String email);
+	 
+	 @Query("select u from User u where u.resetToken = :resetToken")
+	    User findByTokenReturnStream(String resetToken);
 
 }
