@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -107,15 +108,16 @@ public class ForgotPasswordController {
 		} else {
 
 			System.out.println("Changing password");
-			
+			//Encrypt new password 
+			BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 			//set new password
-			user.setPassword(passwordToken.getPassword());
+			user.setPassword(bc.encode(passwordToken.getPassword()));
 			
 			
 			//Set the reset token to null so it cannot be used again
 			user.setResetToken(null);
 			//save the new information
-			userService.createUser(user);
+			userService.createUser(user); 	
 			
 			return "Password reseted successfully";
 		}
