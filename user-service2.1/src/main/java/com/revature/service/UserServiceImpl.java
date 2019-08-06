@@ -6,10 +6,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.revature.entity.User;
 import com.revature.repository.UserRepository;
+
+import springSecurity.UserPrincipleDetailService;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -95,6 +98,11 @@ public class UserServiceImpl implements UserService{
 		User userToken = userRepository.findByTokenReturnStream(token);
 		
 		return userToken;
+	}
+	
+	public UserDetails getUser(User user) {
+		UserPrincipleDetailService userPrince =new UserPrincipleDetailService(userRepository);
+		return userPrince.loadUserByUsername(user.getEmail());
 	}
 
 	
