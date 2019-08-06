@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.entity.User;
@@ -14,6 +15,7 @@ import com.revature.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 	private UserRepository userRepository;
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository) {
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService{
 	public User Authenticate(User user) {
 		
 		User temp= userRepository.findByEmailReturnStream(user.getEmail());
-		if(temp.getPassword().equals(user.getPassword())) {
+		if(encoder.matches(user.getPassword(), temp.getPassword())) {
 			
 			return temp;
 		}
