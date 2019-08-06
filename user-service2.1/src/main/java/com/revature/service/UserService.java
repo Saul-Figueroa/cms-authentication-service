@@ -2,8 +2,6 @@ package com.revature.service;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.revature.entity.User;
 
 
@@ -16,7 +14,6 @@ public interface UserService {
 	public void updateUserById(User user);
 	public void deleteUserById(long userId);
 	public User Authenticate(User user);
-	public UserDetails getUser(User user);
 	public User getUserByEmail(User user);
 	public User getUserByToken(String token);
 
