@@ -14,7 +14,6 @@ public interface UserService {
 	public void updateUserById(User user);
 	public void deleteUserById(long userId);
 	public User Authenticate(User user);
-	
 	public User getUserByEmail(User user);
 	public User getUserByToken(String token);
 
