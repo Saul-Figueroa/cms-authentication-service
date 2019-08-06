@@ -1,2 +1,2 @@
-# csm-authentication-service
-CSM authentication service
+# cms-authentication-service
+CMS authentication service
