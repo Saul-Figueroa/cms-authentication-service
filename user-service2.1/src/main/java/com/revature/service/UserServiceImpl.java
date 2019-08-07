@@ -71,8 +71,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public User Authenticate(User user) {
-		
+		System.out.println("entering auth");
 		User temp= userRepository.findByEmailReturnStream(user.getEmail());
+		System.out.println("user paramater: "+user.toString());
+		System.out.println("temp user: " + temp.toString());
 		if(encoder.matches(user.getPassword(), temp.getPassword())) {
 			
 			return temp;
