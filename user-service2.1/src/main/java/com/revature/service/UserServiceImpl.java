@@ -5,10 +5,13 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.revature.dto.UserDTO;
 import com.revature.entity.User;
 import com.revature.repository.UserRepository;
 
@@ -96,6 +99,33 @@ public class UserServiceImpl implements UserService{
 		User userToken = userRepository.findByTokenReturnStream(token);
 		
 		return userToken;
+	}
+
+
+	@Override
+	@Transactional
+	public UserDTO addNewUser(UserDTO userDetail) {
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		BCryptPasswordEncoder bc =new BCryptPasswordEncoder();
+		User userEntity = modelMapper.map(userDetail, User.class);
+		userEntity.setPassword(bc.encode(userDetail.getPassword()));
+		if(userEntity.getRole()!=null) {
+		if(userEntity.getRole().equals("true")) {
+			userEntity.setRole("QC");
+		}
+		if(userEntity.getRole().equals("false")) {
+			userEntity.setRole("USER");
+		}
+		}
+		else {
+			userEntity.setRole("USER");
+		}
+		System.out.println("Set User entity "+ userEntity);
+		userRepository.save(userEntity);
+		System.out.println(userEntity.getId());
+		UserDTO returnValue = modelMapper.map(userDetail, UserDTO.class);
+		return returnValue;
 	}
 	
 	
