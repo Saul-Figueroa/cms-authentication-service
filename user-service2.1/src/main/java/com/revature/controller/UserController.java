@@ -1,4 +1,4 @@
-package com.revature.controller;
+	package com.revature.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,8 +33,6 @@ public class UserController {
 	@PostMapping(value="/login")
 	public User login(@RequestBody User user) {
 
-
-		
 		return userService.Authenticate(user);
 
 
