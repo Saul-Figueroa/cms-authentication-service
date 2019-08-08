@@ -70,6 +70,17 @@ public User(String email, String password) {
 //	super();
 //	this.resetToken = resetToken;
 //}
+public User(long id, String email, String firstName, String lastName, Date createdDate,
+		String resetToken, String role) {
+	super();
+	this.id = id;
+	this.email = email;
+	this.fname = firstName;
+	this.lname = lastName;
+	this.createdDate = createdDate;
+	this.resetToken = resetToken;
+	this.role = role;
+}
 
 
 public User(long id, String email, String password, String firstName, String lastName, Date createdDate,
