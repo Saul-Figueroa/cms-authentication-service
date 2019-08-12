@@ -25,7 +25,7 @@ import com.revature.service.UserService;
 
 public class ForgotPasswordController {
 	
-	UserService userService;
+	UserService userService;	
 	
 	@Autowired
 	public ForgotPasswordController(UserService userService) {
