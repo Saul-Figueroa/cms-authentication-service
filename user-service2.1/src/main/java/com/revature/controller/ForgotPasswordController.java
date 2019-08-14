@@ -3,7 +3,6 @@ package com.revature.controller;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,7 +44,7 @@ public class ForgotPasswordController {
 	
 	//Here we send an email with the reset link
 	@PostMapping(value = "/forgot")
-	public boolean forgotPasswordEmail(@RequestBody User user, HttpServletRequest request) throws MessagingException {
+	public boolean forgotPasswordEmail(@RequestBody User user) throws MessagingException {
 		
 		//lookup user in the database by email
 		User userEmail = userService.getUserByEmail(user);
@@ -73,7 +72,7 @@ public class ForgotPasswordController {
 				
 			}
 			
-			return false;
+			return true;
 		}
 		
 		
